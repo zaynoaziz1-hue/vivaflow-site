@@ -61,6 +61,9 @@ test('MCP rejects disallowed browser origins and unsupported HTTP methods', asyn
   assert.equal(malformed.status,400);
 });
 test('discovery documents point to real artifacts; skills digest matches', () => {
+  for (const file of ['index.html', 'contact/index.html', 'services/website-design/index.html']) {
+    assert.equal(fs.existsSync('public/' + file), false, 'Static HTML must not shadow the Vercel page rewrite');
+  }
   const index = JSON.parse(fs.readFileSync('public/.well-known/agent-skills/index.json'));
   const skill = index.skills[0];
   assert.equal(skill.digest,'sha256:'+crypto.createHash('sha256').update(fs.readFileSync('public'+skill.url)).digest('hex'));

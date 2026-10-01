@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vivaflow | Stop Losing Jobs to Missed Calls</title>
+  <meta name="description" content="Vivaflow finds where home service businesses lose leads and hours, then builds the fix: websites that book jobs, missed-call text-back, and automatic follow-up. Miami-based, working nationwide.">
+  <meta name="theme-color" content="#0e0c0a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vivaflow">
+  <meta property="og:title" content="You didn't lose that job. Your phone did. | Vivaflow">
+  <meta property="og:description" content="Vivaflow finds exactly where your leads and hours are leaking, then fixes it. Free leak audit for home service businesses.">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    /* hero */
+    .hero{position:relative;overflow:hidden;min-height:min(92vh,820px);display:flex;align-items:flex-end}
+    canvas#flow{position:absolute;inset:0;width:100%;height:100%;display:block}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(14,12,10,.15) 0%, rgba(14,12,10,.5) 60%, var(--bg) 98%)}
+    .hero-content{position:relative;z-index:2;max-width:840px;padding-bottom:clamp(48px,7vw,84px)}
+    .hero h1{font-size:clamp(40px,6.4vw,80px);line-height:1.02}
+    .hero h1 em{font-style:normal;color:var(--accent-bright)}
+    .hero-sub{margin-top:22px}
+
+    /* trade marquee */
+    .marquee-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding-block:18px;background:var(--bg-raised)}
+    .marquee{display:flex;gap:48px;white-space:nowrap;width:max-content;animation:scroll 28s linear infinite;
+      font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2)}
+    .marquee span{display:flex;align-items:center;gap:48px}
+    .marquee b{color:var(--muted);font-weight:500}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media (prefers-reduced-motion: reduce){.marquee{animation:none}}
+
+    /* problem */
+    .leak-list{display:flex;flex-direction:column;margin-top:8px}
+    .leak-item{display:flex;gap:20px;padding-block:22px;border-top:1px solid var(--line)}
+    .leak-item:last-child{border-bottom:1px solid var(--line)}
+    .leak-item .num{flex:none;padding-top:3px}
+    .leak-item p{font-size:clamp(16px,1.7vw,19px);max-width:64ch}
+    .problem-close{margin-top:32px;color:var(--muted);max-width:640px}
+
+    /* services */
+    .svc-wrap{border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:44px}
+    .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line)}
+    @media (max-width:760px){.svc-grid{grid-template-columns:1fr}}
+    .svc{background:var(--bg);padding:36px 32px;min-width:0;display:flex;flex-direction:column}
+    .svc h3{font-size:22px;margin-top:14px}
+    .svc p{color:var(--muted);margin-top:12px;font-size:15px;max-width:52ch}
+
+    /* process: sticky scroll */
+    .process-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;margin-top:20px}
+    @media (max-width:900px){.process-layout{grid-template-columns:1fr}.process-sticky{display:none}}
+    .process-sticky{position:sticky;top:96px;align-self:start}
+    .process-visual{aspect-ratio:1/1;border-radius:22px;border:1px solid var(--line);background:var(--bg-raised);display:flex;align-items:center;justify-content:center}
+    .pv-num{font-family:var(--display);font-size:clamp(64px,9vw,120px);color:var(--accent)}
+    .p-step{padding-block:56px;border-top:1px solid var(--line);opacity:.4;transition:opacity .3s ease}
+    .p-step:last-child{border-bottom:1px solid var(--line)}
+    .p-step.active{opacity:1}
+    @media (max-width:900px){.p-step{opacity:1;padding-block:36px}}
+    .p-step .num{display:block;margin-bottom:14px}
+    .p-step h3{font-size:clamp(22px,2.6vw,30px)}
+    .p-step p{color:var(--muted);margin-top:14px;max-width:52ch}
+
+    /* guarantee */
+    .guarantee{background:var(--bg-raised);border:1px solid var(--line);border-radius:24px;padding:clamp(36px,5.5vw,64px);text-align:center}
+    .guarantee h2{font-size:clamp(25px,3.4vw,38px);max-width:780px;margin:10px auto 0}
+    .guarantee p{max-width:600px;margin:20px auto 0;color:var(--muted)}
+
+    /* about */
+    .about{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+    @media (max-width:860px){.about{grid-template-columns:1fr;gap:36px}}
+    .about-photo{aspect-ratio:4/5;border-radius:20px;position:relative;overflow:hidden;border:1px solid var(--line);display:flex;align-items:flex-end;padding:22px;max-width:520px}
+    .about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+    .about-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(14,12,10,0) 55%, rgba(14,12,10,.7) 100%)}
+    .about-photo span{position:relative;z-index:1;font-family:var(--mono);font-size:12px;color:var(--fg)}
+    .trust-row{margin-top:30px;border-top:1px solid var(--line)}
+    .t-item{display:flex;gap:24px;padding-block:20px;border-bottom:1px solid var(--line)}
+    .t-item h4{font-size:15px;flex:none;width:190px}
+    .t-item p{font-size:14px;color:var(--muted)}
+    @media (max-width:600px){.t-item{flex-direction:column;gap:6px}.t-item h4{width:auto}}
+
+    /* final cta */
+    .final{text-align:center}
+    .final h2{font-size:clamp(30px,4.6vw,50px);max-width:840px;margin:12px auto 0}
+    .final .lede{margin:18px auto 0}
+  </style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap site-nav">
+    <a href="/" class="logo">VIVA<span>FLOW</span></a>
+    <nav class="navlinks" aria-label="Main">
+      <a href="#services">What I Fix</a>
+      <a href="#process">How I Work</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="/contact/">Book a Call</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <canvas id="flow" aria-hidden="true"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="wrap hero-content">
+      <p class="eyebrow">For roofers, plumbers, HVAC, and every trade that lives on the phone</p>
+      <h1>You didn't lose that job. <em>Your phone did.</em></h1>
+      <p class="lede hero-sub">Every call you miss is money walking to the next guy on Google. I find exactly where that's happening in your business and fix it for good. I've run a service business myself. I know what it feels like watching leads slip through the cracks.</p>
+      <div class="cta-row">
+        <a href="/contact/" class="btn btn-primary">Find My Leak, Free</a>
+        <a href="#process" class="btn btn-ghost">See how I work</a>
+      </div>
+      <p class="micro">No charge. No pitch. Just a straight answer.</p>
+    </div>
+  </section>
+
+  <div class="marquee-wrap" aria-hidden="true"><div class="marquee">
+    <span><b>Roofing</b> · <b>HVAC</b> · <b>Plumbing</b> · <b>Pavers &amp; Hardscape</b> · <b>Pool &amp; Outdoor Living</b> · <b>Home Builders</b> · <b>Landscaping</b> ·</span>
+    <span><b>Roofing</b> · <b>HVAC</b> · <b>Plumbing</b> · <b>Pavers &amp; Hardscape</b> · <b>Pool &amp; Outdoor Living</b> · <b>Home Builders</b> · <b>Landscaping</b> ·</span>
+  </div></div>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Where the money actually goes</p>
+      <h2 class="h2">This is what a leak looks like. You've probably lived all three this month.</h2>
+      <div class="leak-list">
+        <div class="leak-item"><span class="num">01</span><p>You're up on a roof. Your phone rings. It goes to voicemail. They call the next name on Google, and you never even know you lost the job.</p></div>
+        <div class="leak-item"><span class="num">02</span><p>Someone fills out your website form at 9pm. Nobody gets back to them until the next afternoon. By then they already booked with someone who answered first.</p></div>
+        <div class="leak-item"><span class="num">03</span><p>You send a quote. Nobody follows up. It just sits there. A week later you can't even remember whose it was.</p></div>
+      </div>
+      <p class="problem-close">None of that is because you're bad at your job. You're running a business, not a call center. But every one of those moments is a job that should've been yours, and it adds up to more than most owners realize until they actually count it.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <p class="eyebrow">What I fix</p>
+      <h2 class="h2">Four places home service owners lose the most money. Start with the one that's costing you most.</h2>
+
+      <div class="svc-wrap">
+        <div class="svc-grid">
+          <div class="svc">
+            <span class="num">01</span>
+            <h3>A website that books jobs</h3>
+            <p>Most contractor sites are an online business card. Yours should turn a stranger from Google into a booked call, on a phone, in under a minute.</p>
+          </div>
+          <div class="svc">
+            <span class="num">02</span>
+            <h3>Never miss another lead</h3>
+            <p>When you can't pick up, your business still answers. A text goes out the second you miss a call, and a new lead gets followed up before they think about calling someone else.</p>
+          </div>
+          <div class="svc">
+            <span class="num">03</span>
+            <h3>Get your evenings back</h3>
+            <p>The stuff you redo by hand every day, like quotes, reminders, and updating your spreadsheet, happens on its own. Fewer hours at the desk. Fewer things falling through the cracks.</p>
+          </div>
+          <div class="svc">
+            <span class="num">04</span>
+            <h3>Know what's actually working</h3>
+            <p>One place that shows where your jobs come from and what turns into real money, so you stop guessing which ads and lead sources are worth another dollar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <p class="eyebrow">How I work</p>
+      <h2 class="h2">No contracts you don't understand. No black box. Here's exactly what happens.</h2>
+
+      <div class="process-layout">
+        <div class="process-sticky" aria-hidden="true">
+          <div class="process-visual"><span class="pv-num" id="pv-num">01</span></div>
+        </div>
+        <div>
+          <div class="p-step" data-step="1">
+            <span class="num">01</span>
+            <h3>I look under the hood, for free</h3>
+            <p>A 30-minute call. I go through your calls, your leads, and how fast you follow up, and I tell you flat out, in plain numbers, where you're losing money. No sales pitch attached.</p>
+          </div>
+          <div class="p-step" data-step="2">
+            <span class="num">02</span>
+            <h3>I build it around your business</h3>
+            <p>Not a template, not a generic package. I build the exact fix for how your business actually runs, and you see the plan and the price before I touch anything.</p>
+          </div>
+          <div class="p-step" data-step="3">
+            <span class="num">03</span>
+            <h3>It goes live, and I stay on it</h3>
+            <p>I turn it on, test it against your real calls and leads, and keep an eye on it until it works the way it should. Not just on day one, every week after.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="guarantee">
+        <p class="eyebrow">The deal</p>
+        <h2>If I can't find a leak worth more than the fix costs, I'll tell you straight, and the audit is still free.</h2>
+        <p>I'm not here to invent a problem so I can sell you something. If your business is already tight, I'll say so. If it's not, I'll show you exactly what it's costing you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="about-photo">
+        <img src="/assets/img/mohamed-aziz.webp" alt="Mohamed Aziz Zayani, founder of Vivaflow" width="900" height="1079" loading="lazy">
+        <span>Miami, FL</span>
+      </div>
+      <div>
+        <p class="eyebrow">Who's doing this</p>
+        <h2 style="font-size:clamp(26px,3.8vw,40px);margin-top:10px">I'm not selling you software. I've been where you are.</h2>
+        <p class="lede" style="margin-top:18px">I'm Mohamed Aziz Zayani. Before Vivaflow, I ran my own cleaning business here in the U.S. I know what it's like to wonder if you're missing calls while you're out on a job, to do everything yourself because you can't afford not to, and to watch a slow month eat into everything you saved.</p>
+        <p class="lede" style="margin-top:14px">I've also traded, built an online store, and managed a restaurant. Different rooms, same lesson every time: most small businesses don't lose money because they're doing something wrong. They lose it in the gaps nobody's watching. That's what I look for now, and it's the only thing Vivaflow does.</p>
+
+        <div class="trust-row">
+          <div class="t-item"><h4>You deal with me</h4><p>Not a call center, not an account manager reading from a script. You text me directly.</p></div>
+          <div class="t-item"><h4>Built for your business</h4><p>Every fix comes after I've actually looked at how you work, not a package I sell to everyone.</p></div>
+          <div class="t-item"><h4>Money first, not tech</h4><p>You won't hear jargon from me. You'll hear what it's costing you and what fixing it is worth.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <p class="eyebrow">Ready when you are</p>
+      <h2>Let's find what's costing you money.</h2>
+      <p class="lede">Book 30 minutes. I'll walk through how your leads and calls are handled right now and tell you straight what I'd fix first. No pressure either way.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a href="/contact/" class="btn btn-primary">Book a Free Call</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap" style="max-width:820px">
+      <p class="eyebrow">Questions</p>
+      <h2 style="font-size:clamp(26px,3.6vw,38px);margin:10px 0 28px">Straight answers</h2>
+      <details open>
+        <summary>What do you actually do?</summary>
+        <p>I find where your business is losing leads or wasting hours, like missed calls, slow follow-up, or a website that doesn't turn visitors into calls, and I build the fix. Not software you have to figure out yourself. I set it up and I run it.</p>
+      </details>
+      <details>
+        <summary>What does it cost?</summary>
+        <p>Depends entirely on what needs fixing. I'll walk you through the real cost on the free call once I know what's actually going on in your business. No guessing, no surprise invoice.</p>
+      </details>
+      <details>
+        <summary>How fast can this be live?</summary>
+        <p>Most fixes are up and running within a couple of weeks of us agreeing on what to build.</p>
+      </details>
+      <details>
+        <summary>What if I can't spend much right now?</summary>
+        <p>Start with the free audit anyway. If the honest answer is "wait a few months," I'll tell you that instead of pushing something you don't need yet.</p>
+      </details>
+      <details>
+        <summary>Do you only work in Miami?</summary>
+        <p>I'm based in Miami but I work with service businesses anywhere. Everything is built to run remotely.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-row">
+    <span>© 2026 Vivaflow. Miami, FL</span>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="/#services">What I Fix</a>
+      <a href="/#about">About</a>
+      <a href="/contact/">Book a Call</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/assets/js/home.js" defer></script>
+</body>
+</html>

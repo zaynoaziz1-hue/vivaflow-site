@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coldfront Air | Concept by Vivaflow</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Concept website by Vivaflow for a fictional Miami air conditioning company.">
+  <meta name="theme-color" content="#f2f6f7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Instrument+Serif&display=swap">
+  <style>
+    /* Coldfront: the page itself is the thermostat. It loads warm and cools
+       to ice-white while the reading drops 94 to 72. Instrument Serif for the
+       calm voice, Geist for everything practical. Lots of air, few borders. */
+    :root{
+      --ice:#f2f6f7; --frost:#dde9ed; --ink:#0e2a33; --mute:#557079;
+      --chill:#2b86b8; --heat:#e8643a; --warm:#fbe9de; --line:#c8d8dd;
+      --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',-apple-system,'Segoe UI',sans-serif;
+      --page:var(--ice);
+      color-scheme:light;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--page);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    h1,h2,h3{margin:0;font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.02;text-wrap:balance}
+    p{margin:0}
+    :focus-visible{outline:2px solid var(--chill);outline-offset:3px}
+    .wrap{max-width:1200px;margin:0 auto;padding-inline:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font:600 15px var(--sans);padding:15px 26px;border-radius:999px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .2s,border-color .2s}
+    .btn-ink{background:var(--ink);color:#fff}
+    .btn-ink:hover{background:#174150}
+    .btn-soft{border-color:var(--line);background:rgba(255,255,255,.5)}
+    .btn-soft:hover{border-color:var(--chill)}
+
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:22px}
+    .brand{font-family:var(--serif);font-size:30px;text-decoration:none;line-height:1}
+    .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--mute)}
+    .nav-links a{text-decoration:none}
+    .nav-links a:hover{color:var(--ink)}
+    .nav-links .btn{color:#fff;padding:11px 20px}
+    @media (max-width:860px){.nav-links a:not(.btn){display:none}}
+
+    /* hero */
+    .hero{padding-block:clamp(28px,5vw,64px) clamp(72px,9vw,120px)}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+    .where{font-size:15px;color:var(--mute)}
+    .hero h1{font-size:clamp(52px,7.4vw,104px);margin-top:18px}
+    .hero h1 span{display:block;color:var(--mute)}
+    .hero p.lead{margin-top:24px;font-size:19px;color:var(--mute);max-width:42ch}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+    .thermo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;background:var(--frost)}
+    .thermo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:var(--photo-filter, saturate(.9) hue-rotate(0deg))}
+    .thermo::after{content:"";position:absolute;inset:0;background:var(--tint, rgba(43,134,184,.18));mix-blend-mode:multiply}
+    .reading{position:absolute;left:24px;right:24px;bottom:24px;z-index:2;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:20px 24px;display:flex;justify-content:space-between;align-items:end;gap:16px}
+    .reading .inside{font-family:var(--serif);font-size:clamp(72px,9vw,112px);line-height:.85;color:var(--temp-color, var(--chill));font-variant-numeric:tabular-nums}
+    .reading .inside sup{font-size:.45em;vertical-align:top;margin-left:2px}
+    .reading .meta{text-align:right;font-size:14px;color:var(--mute);line-height:1.5}
+    .reading .meta b{display:block;color:var(--heat);font-size:16px;font-weight:600}
+
+    section{padding-block:clamp(80px,10vw,136px)}
+    .sec-head{max-width:640px}
+    .sec-head h2{font-size:clamp(40px,5.2vw,68px)}
+    .sec-head p{margin-top:18px;color:var(--mute);font-size:18px}
+
+    .services{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,80px);margin-top:56px}
+    @media (max-width:760px){.services{grid-template-columns:1fr}}
+    .svc{padding-block:30px;border-top:1px solid var(--line)}
+    .svc h3{font-size:34px}
+    .svc p{margin-top:10px;color:var(--mute);max-width:46ch}
+
+    .tuneup{background:#fff}
+    .tune-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+    @media (max-width:900px){.tune-grid{grid-template-columns:1fr}}
+    .tune-grid img{border-radius:28px;aspect-ratio:5/4;object-fit:cover;width:100%}
+    .checks{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:14px}
+    .checks li{display:flex;gap:14px;align-items:flex-start}
+    .checks li::before{content:"";flex:none;width:22px;height:22px;margin-top:2px;border-radius:50%;background:var(--frost) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b86b8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
+
+    .plans{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+    @media (max-width:760px){.plans{grid-template-columns:1fr}}
+    .plan{border:1px solid var(--line);border-radius:24px;padding:32px;background:rgba(255,255,255,.6)}
+    .plan.best{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .plan h3{font-size:36px}
+    .plan .price{margin-top:8px;font-size:15px;color:var(--mute)}
+    .plan.best .price{color:#9fc3d1}
+    .plan .price b{font-family:var(--serif);font-weight:400;font-size:44px;color:inherit}
+    .plan.best .price b{color:#fff}
+    .plan ul{margin:22px 0 0;padding-left:18px;display:grid;gap:8px}
+
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:56px;counter-reset:s}
+    @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+    @media (max-width:520px){.steps{grid-template-columns:1fr}}
+    .step{counter-increment:s}
+    .step::before{content:counter(s);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);font-family:var(--serif);font-size:24px;color:var(--chill)}
+    .step h3{font-size:28px;margin-top:18px}
+    .step p{margin-top:8px;color:var(--mute);font-size:16px}
+
+    .book{background:var(--ink);color:#fff;border-radius:32px;margin-inline:16px;padding:clamp(40px,6vw,80px)}
+    .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);max-width:1120px;margin:0 auto}
+    @media (max-width:900px){.book-grid{grid-template-columns:1fr}}
+    .book h2{font-size:clamp(42px,5.4vw,72px)}
+    .book p{margin-top:18px;color:#9fc3d1;max-width:40ch}
+    form{display:grid;gap:12px}
+    form label{display:grid;gap:6px;font-size:14px;color:#9fc3d1}
+    form input,form select{font:inherit;font-size:16px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:13px 16px}
+    form input:focus,form select:focus{outline:2px solid #7cc4e8;outline-offset:1px}
+    form .btn{background:#fff;color:var(--ink);margin-top:6px}
+    .form-note{font-size:14px;color:#7cc4e8;min-height:1.4em}
+
+    footer{padding-block:40px;font-size:14px;color:var(--mute)}
+    footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    .concept{position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:#0e0c0a;color:#f5efe4;
+      font:600 12px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.2)}
+    .concept i{width:7px;height:7px;border-radius:50%;background:#cd7f42}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Coldfront</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#plans">Maintenance plans</a>
+      <a href="#how">How it works</a>
+      <a href="tel:+13055550178">(305) 555-0178</a>
+      <a class="btn btn-ink" href="#book">Schedule service</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="where">Air conditioning for Miami-Dade and Broward</p>
+        <h1>Ninety-four outside. <span>Seventy-two in here.</span></h1>
+        <p class="lead">Same-day AC repair, honest replacements, and maintenance that keeps your system running through the longest summer in the country.</p>
+        <div class="actions">
+          <a class="btn btn-ink" href="#book">Schedule service</a>
+          <a class="btn btn-soft" href="tel:+13055550178">AC out? Call (305) 555-0178</a>
+        </div>
+      </div>
+      <div class="thermo" id="thermo">
+        <img src="https://images.unsplash.com/photo-1758798157512-f0a864c696c9?auto=format&fit=crop&w=1200&q=75" alt="Outdoor air conditioning unit in bright sun">
+        <div class="reading" aria-label="Inside temperature 72 degrees">
+          <div class="inside"><span id="temp">72</span><sup>°F</sup></div>
+          <div class="meta"><b>94°F outside</b>Inside, after we're done</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Everything your AC needs, from one crew.</h2>
+        <p>Our technicians are employees, not subcontractors. The person who diagnoses your system is the person who fixes it.</p>
+      </div>
+      <div class="services">
+        <div class="svc"><h3>Same-day repair</h3><p>Call before noon and we'll have a technician at your door today, with the common parts already on the truck.</p></div>
+        <div class="svc"><h3>New system installs</h3><p>We size the system to your home with a proper load calculation, not a guess based on square footage.</p></div>
+        <div class="svc"><h3>Maintenance plans</h3><p>Two tune-ups a year and priority scheduling, so you're first in line when it's 95 degrees in August.</p></div>
+        <div class="svc"><h3>Indoor air quality</h3><p>Humidity control, UV lights, and better filtration for allergies and South Florida's damp air.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tuneup">
+    <div class="wrap tune-grid">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1300&q=75" alt="Bright, cool living room" loading="lazy">
+      <div class="sec-head">
+        <h2>What a tune-up actually covers.</h2>
+        <p>A tune-up should take more than ten minutes and a new filter. Ours takes about an hour, and you get a written checklist when we leave.</p>
+        <ul class="checks">
+          <li>Clean the condenser and evaporator coils</li>
+          <li>Check refrigerant pressure against the manufacturer's spec</li>
+          <li>Flush the condensate drain line so it can't back up</li>
+          <li>Tighten electrical connections and test the capacitor</li>
+          <li>Measure the temperature drop across the coil</li>
+          <li>Replace the filter and show you how to do it yourself</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Pay a little now instead of a lot in July.</h2>
+        <p>Cancel any time. No contracts.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Essential</h3>
+          <p class="price"><b>$19</b> a month</p>
+          <ul><li>Two tune-ups a year</li><li>Priority scheduling</li><li>10% off repairs</li></ul>
+        </div>
+        <div class="plan best">
+          <h3>Complete</h3>
+          <p class="price"><b>$34</b> a month</p>
+          <ul><li>Everything in Essential</li><li>No overtime charges on nights and weekends</li><li>Filters delivered every quarter</li><li>20% off repairs</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head"><h2>How a service call works.</h2></div>
+      <div class="steps">
+        <div class="step"><h3>Call or book</h3><p>Pick a two-hour window. We text when the technician is on the way.</p></div>
+        <div class="step"><h3>Diagnose</h3><p>A flat diagnostic fee, credited to the repair if you go ahead.</p></div>
+        <div class="step"><h3>Upfront price</h3><p>You see the full price before any work starts. No surprises on the invoice.</p></div>
+        <div class="step"><h3>Fixed and cool</h3><p>Most repairs are finished on the first visit, before the house heats back up.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" style="padding-top:0">
+    <div class="book">
+      <div class="book-grid">
+        <div>
+          <h2>Too warm inside? Let's fix that today.</h2>
+          <p>Book online or call. Same-day appointments are available most weekdays.</p>
+        </div>
+        <form id="book-form" novalidate>
+          <label>Your name<input id="c-name" name="name" autocomplete="name" required></label>
+          <label>Phone<input id="c-phone" name="phone" type="tel" autocomplete="tel" required></label>
+          <label>What do you need?
+            <select id="c-need" name="need"><option>AC repair</option><option>Tune-up</option><option>New system quote</option><option>Air quality</option></select>
+          </label>
+          <button class="btn" type="submit">Book my appointment</button>
+          <p class="form-note" id="form-note" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Coldfront Air is a fictional company. Concept website designed by Vivaflow.</span>
+    <a href="/services/website-design/" target="_top">Want a site like this?</a>
+  </div>
+</footer>
+
+<a class="concept" href="/services/website-design/" target="_top"><i></i>Concept by Vivaflow</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // The one big moment: the page cools. Reading drops 94 -> 72, page and
+  // photo shift from heat-warm to ice-cool together.
+  var root = document.documentElement, t = { v: 94, p: 0 };
+  var temp = document.getElementById('temp');
+  var mix = gsap.utils.interpolate('#fbe9de', '#f2f6f7');
+  var tempColor = gsap.utils.interpolate('#e8643a', '#2b86b8');
+  var tint = gsap.utils.interpolate('rgba(232,100,58,0.32)', 'rgba(43,134,184,0.18)');
+  function paint(){
+    temp.textContent = Math.round(t.v);
+    root.style.setProperty('--page', mix(t.p));
+    root.style.setProperty('--temp-color', tempColor(t.p));
+    root.style.setProperty('--tint', tint(t.p));
+    root.style.setProperty('--photo-filter', 'saturate(' + (1.25 - t.p*.35) + ') sepia(' + (0.35 - t.p*.35) + ')');
+  }
+  paint();
+  gsap.from('.where, .hero h1, .lead, .hero .actions', { y: 28, opacity: 0, duration: .9, stagger: .1, ease: 'power3.out' });
+  gsap.from('.thermo', { scale: .96, opacity: 0, duration: 1, ease: 'power3.out' });
+  gsap.to(t, { v: 72, p: 1, duration: 3.4, delay: .8, ease: 'power2.inOut', onUpdate: paint });
+
+  gsap.from('.svc', { opacity: 0, y: 24, duration: .7, stagger: .1, ease: 'power2.out', scrollTrigger: { trigger: '.services', start: 'top 80%' } });
+  gsap.from('.checks li', { opacity: 0, x: -16, duration: .5, stagger: .08, ease: 'power2.out', scrollTrigger: { trigger: '.checks', start: 'top 80%' } });
+})();
+
+document.getElementById('book-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('form-note').textContent = 'This is a concept site by Vivaflow, so no appointment was booked.';
+});
+</script>
+</body>
+</html>

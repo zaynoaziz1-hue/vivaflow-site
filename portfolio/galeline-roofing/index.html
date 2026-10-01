@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galeline Roofing | Concept by Vivaflow</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Concept website by Vivaflow for a fictional South Florida roofing company.">
+  <meta name="theme-color" content="#0f161d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap">
+  <style>
+    /* Galeline: storm slate + galvalume concrete, one signal yellow used only
+       where a roofer would use it (the wind rating and the call to action).
+       Condensed Archivo carries the weight; layout is left-aligned and blunt. */
+    :root{
+      --storm:#0f161d; --slate:#1c2731; --steel:#a8b3bc; --concrete:#e7e8e4;
+      --ink:#131c24; --mute:#5c6872; --signal:#f0b429; --line:#c9cdcc;
+      --f:'Archivo','Arial Narrow',Arial,sans-serif;
+      color-scheme:light;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--concrete);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    h1,h2,h3{margin:0;font-stretch:72%;font-weight:800;line-height:.95;letter-spacing:-.01em;text-wrap:balance}
+    p{margin:0}
+    :focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+    .wrap{max-width:1240px;margin:0 auto;padding-inline:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--f);font-weight:700;font-size:16px;
+      padding:16px 26px;border-radius:4px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s}
+    .btn-signal{background:var(--signal);color:var(--storm)}
+    .btn-signal:hover{background:#ffc94d}
+    .btn-line{border-color:currentColor}
+
+    /* nav */
+    .nav{position:absolute;inset:0 0 auto 0;z-index:5;color:#fff}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:22px}
+    .brand{font-stretch:75%;font-weight:900;font-size:24px;text-decoration:none;letter-spacing:-.01em}
+    .brand small{display:block;font-stretch:100%;font-weight:500;font-size:12px;letter-spacing:.02em;color:var(--steel)}
+    .nav-links{display:flex;gap:28px;align-items:center;font-size:15px}
+    .nav-links a{text-decoration:none;opacity:.85}
+    .nav-links a:hover{opacity:1}
+    .nav-phone{font-weight:700;opacity:1!important}
+    @media (max-width:900px){.nav-links a:not(.nav-phone){display:none}}
+
+    /* hero */
+    .hero{position:relative;min-height:min(100vh,900px);background:var(--storm) center/cover no-repeat;color:#fff;display:flex;align-items:flex-end;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,22,29,.55) 0%,rgba(15,22,29,.15) 40%,rgba(15,22,29,.85) 100%)}
+    #rain{position:absolute;inset:0;width:100%;height:100%}
+    .hero-inner{position:relative;width:100%;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding-block:140px 56px}
+    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
+    .hero h1{font-size:clamp(52px,9vw,128px);max-width:11ch}
+    .hero p{margin-top:22px;max-width:46ch;font-size:19px;color:#d5dce1}
+    .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .gauge{background:rgba(15,22,29,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(168,179,188,.25);border-radius:6px;padding:22px 24px;width:min(320px,100%)}
+    .gauge-num{display:flex;align-items:baseline;gap:8px}
+    .gauge-num b{font-stretch:62%;font-weight:900;font-size:84px;line-height:.9;color:var(--signal);font-variant-numeric:tabular-nums;min-width:3ch}
+    .gauge-num span{font-weight:600;color:var(--steel)}
+    .gauge label{display:block;font-size:14px;color:#c3ccd2;margin-top:6px}
+    .gauge input{width:100%;margin-top:14px;accent-color:var(--signal)}
+    .gauge small{display:block;margin-top:10px;font-size:13px;color:var(--steel)}
+
+    section{padding-block:clamp(80px,10vw,140px)}
+
+    /* roofs */
+    .roofs{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:start}
+    @media (max-width:900px){.roofs{grid-template-columns:1fr}}
+    .roofs h2{font-size:clamp(40px,5.4vw,76px)}
+    .roofs .intro{margin-top:22px;color:var(--mute);max-width:42ch}
+    .roofs figure{margin:36px 0 0;border-radius:4px;overflow:hidden}
+    .roofs figure img{aspect-ratio:4/5;object-fit:cover;width:100%}
+    .roof-list{border-top:2px solid var(--ink)}
+    .roof{display:grid;grid-template-columns:1fr 1.3fr;gap:24px;padding-block:28px;border-bottom:1px solid var(--line)}
+    @media (max-width:600px){.roof{grid-template-columns:1fr;gap:8px}}
+    .roof h3{font-size:30px}
+    .roof p{color:var(--mute)}
+    .roof .life{display:block;margin-top:8px;font-weight:700;color:var(--ink);font-size:15px}
+
+    /* storm */
+    .storm{position:relative;background:var(--storm) center/cover no-repeat;color:#fff;overflow:hidden}
+    .storm::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,22,29,.95) 0%,rgba(15,22,29,.7) 55%,rgba(15,22,29,.3) 100%)}
+    .storm .wrap{position:relative}
+    .storm h2{font-size:clamp(44px,6.2vw,92px);max-width:12ch}
+    .storm p{margin-top:24px;max-width:48ch;color:#cfd7dc;font-size:19px}
+    .storm-list{list-style:none;padding:0;margin:36px 0 0;display:grid;gap:14px;max-width:560px}
+    .storm-list li{display:flex;gap:16px;align-items:baseline;border-top:1px solid rgba(168,179,188,.3);padding-top:14px}
+    .storm-list b{font-stretch:75%;font-size:22px;min-width:7ch}
+    .storm-list span{color:#cfd7dc}
+    .storm .actions{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap}
+
+    /* process */
+    .process-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
+    .process-head h2{font-size:clamp(40px,5.4vw,76px);max-width:14ch}
+    .process-head p{max-width:40ch;color:var(--mute)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:2px solid var(--ink)}
+    @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+    @media (max-width:560px){.steps{grid-template-columns:1fr}}
+    .step{padding:26px 24px 30px 0;border-right:1px solid var(--line);margin-right:24px}
+    .step:last-child{border-right:0}
+    @media (max-width:900px){.step{border-right:0;border-bottom:1px solid var(--line)}}
+    .step i{font-style:normal;font-stretch:62%;font-weight:900;font-size:56px;color:var(--steel);line-height:1}
+    .step h3{font-size:26px;margin-top:14px}
+    .step p{color:var(--mute);margin-top:10px;font-size:16px}
+    .wide-photo{margin-top:64px;border-radius:4px;overflow:hidden}
+    .wide-photo img{width:100%;aspect-ratio:21/8;object-fit:cover}
+
+    /* area + estimate */
+    .estimate{background:var(--slate);color:#fff}
+    .est-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
+    @media (max-width:900px){.est-grid{grid-template-columns:1fr}}
+    .estimate h2{font-size:clamp(40px,5.4vw,76px)}
+    .estimate .lead{margin-top:20px;color:#c3ccd2;max-width:42ch}
+    .area{margin-top:40px}
+    .area h3{font-size:22px}
+    .area ul{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+    .area li{border:1px solid rgba(168,179,188,.35);border-radius:3px;padding:6px 12px;font-size:14px;color:#dfe5e9}
+    form{display:grid;gap:14px;background:var(--storm);padding:clamp(22px,3vw,36px);border-radius:6px;align-self:start}
+    form label{display:grid;gap:6px;font-size:14px;font-weight:600;color:#c3ccd2}
+    form input,form select{font:inherit;font-size:16px;color:#fff;background:var(--slate);border:1px solid rgba(168,179,188,.35);border-radius:4px;padding:13px 14px}
+    form input:focus,form select:focus{outline:2px solid var(--signal);outline-offset:1px}
+    .form-note{font-size:14px;color:var(--signal);min-height:1.4em}
+
+    footer{background:var(--storm);color:var(--steel);font-size:14px;padding-block:32px}
+    footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    /* concept ribbon */
+    .concept{position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:#0e0c0a;color:#f5efe4;
+      font:600 12px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+    .concept i{width:7px;height:7px;border-radius:50%;background:#cd7f42}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Galeline<small>Roofing, South Florida</small></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#roofs">Roofs</a>
+      <a href="#storm">Storm service</a>
+      <a href="#process">Process</a>
+      <a href="#estimate">Service area</a>
+      <a class="nav-phone" href="tel:+13055550142">(305) 555-0142</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1748701821466-0b9f8bf839ac?auto=format&fit=crop&w=2200&q=75')">
+    <canvas id="rain" aria-hidden="true"></canvas>
+    <div class="wrap hero-inner">
+      <div>
+        <h1 class="h-split">Roofs that stay on when the wind doesn't let up.</h1>
+        <p>Metal, tile, and shingle roofs engineered for Miami-Dade's High Velocity Hurricane Zone. Permitted, inspected, and installed by our own crews.</p>
+        <div class="actions">
+          <a class="btn btn-signal" href="#estimate">Book a free roof inspection</a>
+          <a class="btn btn-line" href="#storm">Storm damage? Call now</a>
+        </div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-num"><b id="wind-num">0</b><span>mph</span></div>
+        <label for="wind">Drag to test the wind</label>
+        <input id="wind" type="range" min="0" max="180" value="0">
+        <small>Our standing-seam systems are rated to 180 mph uplift.</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="roofs">
+    <div class="wrap roofs">
+      <div>
+        <h2>Four roofs. Every one built to code you can't fake.</h2>
+        <p class="intro">South Florida has the strictest roofing code in the country. We only install systems with a current Miami-Dade product approval, and we photograph every layer so you have proof for your insurer.</p>
+        <figure><img src="https://images.unsplash.com/photo-1635424825057-7fb6dcd651ef?auto=format&fit=crop&w=1100&q=75" alt="Roofer fastening a roof with a power drill" loading="lazy"></figure>
+      </div>
+      <div class="roof-list">
+        <div class="roof"><h3>Standing-seam metal</h3><p>Concealed fasteners, continuous panels, the highest wind rating we install.<span class="life">Expected life: 40 to 60 years</span></p></div>
+        <div class="roof"><h3>Concrete tile</h3><p>The classic South Florida look, set in foam adhesive for hurricane uplift.<span class="life">Expected life: 30 to 50 years</span></p></div>
+        <div class="roof"><h3>Architectural shingle</h3><p>The budget-friendly option, with high-wind starter strips and six-nail patterns.<span class="life">Expected life: 20 to 25 years</span></p></div>
+        <div class="roof"><h3>Flat and low-slope</h3><p>Modified bitumen and TPO for additions, porches, and modern flat roofs.<span class="life">Expected life: 15 to 25 years</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="storm" class="storm" style="background-image:url('https://images.unsplash.com/photo-1569870614207-12857a03f906?auto=format&fit=crop&w=2200&q=75')">
+    <div class="wrap">
+      <h2 class="h-split">When the storm's gone, we're already on the way.</h2>
+      <p>A torn roof gets worse with every rain. Our storm crew answers around the clock during hurricane season, dries you in fast, and documents everything your insurance adjuster will ask for.</p>
+      <ul class="storm-list">
+        <li><b>24/7</b><span>A real person answers the storm line, day or night.</span></li>
+        <li><b>Same day</b><span>Emergency tarping to stop water getting in.</span></li>
+        <li><b>Photo report</b><span>Dated photos of every damaged area for your claim.</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-signal" href="tel:+13055550142">Call the storm line</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="process-head">
+        <h2>From inspection to final sign-off.</h2>
+        <p>Most replacements take one to two weeks from permit to final inspection. You'll know which step you're on the whole time.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><i>1</i><h3>Inspection</h3><p>We walk the roof, check the decking from the attic, and give you a written report with photos.</p></div>
+        <div class="step"><i>2</i><h3>Permit</h3><p>We pull the permit and handle the engineering paperwork the city requires.</p></div>
+        <div class="step"><i>3</i><h3>Install</h3><p>Tear-off, new underlayment, and the new roof, with the site cleaned every evening.</p></div>
+        <div class="step"><i>4</i><h3>Final inspection</h3><p>The city inspector signs off, and you get your warranty and closing photos.</p></div>
+      </div>
+      <div class="wide-photo"><img src="https://images.unsplash.com/photo-1763665814538-8ba04597286c?auto=format&fit=crop&w=2000&q=75" alt="Crew installing roof tiles" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="estimate" class="estimate">
+    <div class="wrap est-grid">
+      <div>
+        <h2>Get your roof checked before the next storm.</h2>
+        <p class="lead">Free inspections across South Florida. We'll tell you honestly whether you need a repair, a replacement, or nothing at all.</p>
+        <div class="area">
+          <h3>Where we work</h3>
+          <ul>
+            <li>Miami</li><li>Coral Gables</li><li>Kendall</li><li>Homestead</li><li>Miami Beach</li><li>Hialeah</li>
+            <li>Fort Lauderdale</li><li>Hollywood</li><li>Pembroke Pines</li><li>Boca Raton</li><li>West Palm Beach</li>
+          </ul>
+        </div>
+      </div>
+      <form id="est-form" novalidate>
+        <label>Your name<input id="g-name" name="name" autocomplete="name" required></label>
+        <label>Phone<input id="g-phone" name="phone" type="tel" autocomplete="tel" required></label>
+        <label>Property address<input id="g-addr" name="address" autocomplete="street-address"></label>
+        <label>What's going on?
+          <select id="g-need" name="need">
+            <option>Free inspection</option><option>Storm damage</option><option>Leak repair</option><option>Full replacement</option>
+          </select>
+        </label>
+        <button class="btn btn-signal" type="submit">Request my inspection</button>
+        <p class="form-note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Galeline Roofing is a fictional company. Concept website designed by Vivaflow.</span>
+    <a href="/services/website-design/" target="_top">Want a site like this?</a>
+  </div>
+</footer>
+
+<a class="concept" href="/services/website-design/" target="_top"><i></i>Concept by Vivaflow</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var state = { wind: 0 };
+  var num = document.getElementById('wind-num');
+  var slider = document.getElementById('wind');
+
+  // Rain: streak angle and density follow the wind speed.
+  var c = document.getElementById('rain'), ctx = c.getContext('2d'), W = 0, H = 0, drops = [];
+  function size(){ var r = c.getBoundingClientRect(), d = Math.min(devicePixelRatio||1, 2); W = r.width; H = r.height; c.width = W*d; c.height = H*d; ctx.setTransform(d,0,0,d,0,0); }
+  size(); addEventListener('resize', size);
+  for (var i=0;i<420;i++) drops.push({ x: Math.random(), y: Math.random(), l: 10+Math.random()*22, v: .6+Math.random()*.8, o: .15+Math.random()*.35 });
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    var w = state.wind/180, angle = w*1.05, active = Math.floor(120 + w*300);
+    var dx = Math.sin(angle), dy = Math.cos(angle);
+    ctx.lineCap = 'round';
+    for (var i=0;i<active;i++){
+      var d = drops[i], speed = (10 + w*14) * d.v;
+      d.y += dy*speed/H; d.x += dx*speed/W;
+      if (d.y > 1.05 || d.x > 1.1){ d.y = -.05; d.x = Math.random()*1.2 - .3; }
+      var x = d.x*W, y = d.y*H, len = d.l*(1+w*.8);
+      ctx.strokeStyle = 'rgba(214,224,232,'+d.o+')';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x - dx*len, y - dy*len); ctx.stroke();
+    }
+    requestAnimationFrame(frame);
+  }
+  function show(v){ num.textContent = Math.round(v); slider.value = Math.round(v); }
+  slider.addEventListener('input', function(){ if (window.gsap) gsap.killTweensOf(state); state.wind = +slider.value; show(state.wind); });
+
+  if (reduced || !window.gsap){ state.wind = 180; show(180); if (!reduced) requestAnimationFrame(frame); return; }
+  requestAnimationFrame(frame);
+  gsap.registerPlugin(ScrollTrigger);
+
+  // One orchestrated load: headline rises line by line, then the wind builds to 180.
+  gsap.from('.hero h1, .hero p, .hero .actions', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: .12 });
+  gsap.from('.gauge', { y: 30, opacity: 0, duration: .9, delay: .5, ease: 'power3.out' });
+  gsap.to(state, { wind: 180, duration: 3.2, delay: .9, ease: 'power2.inOut', onUpdate: function(){ show(state.wind); } });
+
+  // Scroll: the roof list builds row by row, process steps land in order.
+  gsap.utils.toArray('.roof').forEach(function(el){ gsap.from(el, { opacity: 0, x: 30, duration: .7, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 85%' } }); });
+  gsap.from('.step', { opacity: 0, y: 30, duration: .7, stagger: .15, ease: 'power2.out', scrollTrigger: { trigger: '.steps', start: 'top 80%' } });
+  gsap.fromTo('.storm', { backgroundPosition: '50% 30%' }, { backgroundPosition: '50% 70%', ease: 'none', scrollTrigger: { trigger: '.storm', scrub: true } });
+})();
+
+document.getElementById('est-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('form-note').textContent = 'This is a concept site by Vivaflow, so no request was sent.';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coquina Pavers &amp; Stone | Concept by Vivaflow</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Concept website by Vivaflow for a fictional South Florida paver and hardscape company.">
+  <meta name="theme-color" content="#2a2622">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap">
+  <style>
+    /* Coquina: limestone and charcoal with a sea-grape green, the colors of a
+       finished South Florida pool deck. Cormorant for an editorial, gallery
+       voice; Work Sans keeps the practical parts plain. The signature is a
+       photo assembled from herringbone pavers as you scroll. */
+    :root{
+      --lime:#f4efe6; --coquina:#dccbb2; --char:#2a2622; --grape:#4f5e45; --sand:#b9a68a; --mute:#6e655b; --line:#ddd3c3;
+      --serif:'Cormorant Garamond',Georgia,serif; --sans:'Work Sans',-apple-system,'Segoe UI',sans-serif;
+      color-scheme:light;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--lime);color:var(--char);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1;text-wrap:balance}
+    p{margin:0}
+    :focus-visible{outline:2px solid var(--grape);outline-offset:3px}
+    .wrap{max-width:1240px;margin:0 auto;padding-inline:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font:500 15px var(--sans);letter-spacing:.01em;padding:16px 28px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .25s,color .25s}
+    .btn-grape{background:var(--grape);color:#fff}
+    .btn-grape:hover{background:#3d4a35}
+    .btn-ghost{border-color:rgba(255,255,255,.6);color:#fff}
+    .btn-ghost:hover{background:#fff;color:var(--char)}
+
+    .nav{position:absolute;inset:0 0 auto 0;z-index:5;color:#fff}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:26px}
+    .brand{font-family:var(--serif);font-size:30px;font-weight:600;text-decoration:none;line-height:1}
+    .brand small{display:block;font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.04em;opacity:.8;margin-top:4px}
+    .nav-links{display:flex;gap:30px;align-items:center;font-size:15px}
+    .nav-links a{text-decoration:none;opacity:.88}
+    .nav-links a:hover{opacity:1}
+    @media (max-width:860px){.nav-links a:not(.btn){display:none}}
+
+    .hero{position:relative;height:min(100vh,940px);min-height:620px;overflow:hidden;color:#fff;display:flex;align-items:flex-end}
+    .hero-img{position:absolute;inset:0;background:var(--char) center/cover no-repeat;transform-origin:60% 50%}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,38,34,.45) 0%,rgba(42,38,34,0) 35%,rgba(42,38,34,.75) 100%)}
+    .hero .wrap{position:relative;z-index:2;width:100%;padding-block:0 64px;display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
+    .hero h1{font-size:clamp(58px,9vw,136px);max-width:10ch;font-weight:400}
+    .hero aside{max-width:340px}
+    .hero aside p{font-size:17px;color:#efe7da}
+    .hero aside .btn{margin-top:22px}
+
+    section{padding-block:clamp(88px,11vw,152px)}
+    .statement p{font-family:var(--serif);font-size:clamp(32px,4.2vw,58px);line-height:1.12;max-width:22ch}
+    .statement p span{color:var(--mute)}
+
+    .materials{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:center}
+    @media (max-width:900px){.materials{grid-template-columns:1fr}}
+    .materials img{width:100%;aspect-ratio:4/5;object-fit:cover}
+    .materials h2{font-size:clamp(44px,5.6vw,80px)}
+    .mat-list{margin-top:36px;border-top:1px solid var(--char)}
+    .mat{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;padding-block:22px;border-bottom:1px solid var(--line)}
+    .swatch{width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+    .mat h3{font-size:30px}
+    .mat p{color:var(--mute);margin-top:4px;font-size:16px}
+
+    .laid{background:var(--char);color:var(--lime);padding-bottom:0}
+    .laid-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
+    .laid h2{font-size:clamp(46px,6vw,92px);max-width:11ch;font-weight:400}
+    .laid-head p{max-width:38ch;color:#c9bfae}
+    .stage{margin-top:56px;position:relative}
+    #pavers{display:block;width:100%;height:auto;background:#1f1c19}
+
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+    @media (max-width:900px){.projects{grid-template-columns:1fr}}
+    .proj img{width:100%;aspect-ratio:3/4;object-fit:cover}
+    .proj h3{font-size:34px;margin-top:20px}
+    .proj p{color:var(--mute);margin-top:8px;font-size:16px}
+    .sec-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
+    .sec-head h2{font-size:clamp(44px,5.6vw,80px);max-width:12ch}
+    .sec-head p{max-width:38ch;color:var(--mute)}
+
+    .process{background:var(--coquina)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border-top:1px solid var(--char)}
+    @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+    @media (max-width:520px){.steps{grid-template-columns:1fr}}
+    .step{padding:28px 28px 28px 0}
+    .step b{font-family:var(--serif);font-weight:500;font-size:64px;line-height:1;color:var(--grape)}
+    .step h3{font-size:30px;margin-top:12px}
+    .step p{margin-top:8px;color:#4f473f;font-size:16px}
+
+    .consult-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
+    @media (max-width:900px){.consult-grid{grid-template-columns:1fr}}
+    .consult h2{font-size:clamp(46px,6vw,88px);font-weight:400}
+    .consult .lead{margin-top:22px;color:var(--mute);max-width:40ch}
+    form{display:grid;gap:16px}
+    form label{display:grid;gap:6px;font-size:14px;font-weight:500;color:var(--mute)}
+    form input,form select{font:inherit;font-size:16px;color:var(--char);background:transparent;border:0;border-bottom:1px solid var(--sand);padding:12px 0;border-radius:0}
+    form input:focus,form select:focus{outline:none;border-bottom-color:var(--grape);box-shadow:0 1px 0 var(--grape)}
+    form .btn{justify-self:start;margin-top:8px}
+    .form-note{font-size:14px;color:var(--grape);min-height:1.4em}
+
+    footer{background:var(--char);color:#a99e8e;font-size:14px;padding-block:32px}
+    footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    .concept{position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:#0e0c0a;color:#f5efe4;
+      font:600 12px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.2)}
+    .concept i{width:7px;height:7px;border-radius:50%;background:#cd7f42}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Coquina<small>Pavers &amp; Stone</small></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#materials">Materials</a>
+      <a href="#projects">Projects</a>
+      <a href="#process">Process</a>
+      <a class="btn btn-ghost" href="#consult">Book a design consult</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <div class="hero-img" style="background-image:url('https://images.unsplash.com/photo-1766603636617-0c71c2188160?auto=format&fit=crop&w=2400&q=75')"></div>
+    <div class="wrap">
+      <h1>Outdoor living, set in stone.</h1>
+      <aside>
+        <p>Pool decks, driveways, and patios in travertine, coquina, and premium pavers, designed and installed across Miami, Broward, and Palm Beach.</p>
+        <a class="btn btn-ghost" href="#consult">Book a design consult</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="wrap">
+      <p>We build outdoor spaces that look better ten years from now than the day we finished. <span>That comes down to the base you never see.</span></p>
+    </div>
+  </section>
+
+  <section id="materials" style="padding-top:0">
+    <div class="wrap materials">
+      <img src="https://images.unsplash.com/photo-1786996561187-80e0cb5f8bb2?auto=format&fit=crop&w=1200&q=75" alt="Interlocking concrete pavers with sharp shadows" loading="lazy">
+      <div>
+        <h2>Four materials we trust in this climate.</h2>
+        <div class="mat-list">
+          <div class="mat"><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#f3eadb,#d9c8ab)"></span><div><h3>Travertine</h3><p>Stays cool under bare feet, which is why it's the first choice for pool decks.</p></div></div>
+          <div class="mat"><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#e8dcc6,#c4ae8b)"></span><div><h3>Coquina shell stone</h3><p>Native Florida limestone with fossil shells you can see in every piece.</p></div></div>
+          <div class="mat"><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#a9a49c,#6f6a63)"></span><div><h3>Concrete pavers</h3><p>The strongest option for driveways, in dozens of colors and patterns.</p></div></div>
+          <div class="mat"><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#e9e6e1,#bdb8b0)"></span><div><h3>Porcelain pavers</h3><p>Stain-proof and modern, for outdoor kitchens and covered patios.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="laid">
+    <div class="wrap">
+      <div class="laid-head">
+        <h2>Laid by hand, one stone at a time.</h2>
+        <p>Every paver sits on compacted base rock, graded so water runs away from your home and your pool. Scroll to watch a deck come together.</p>
+      </div>
+    </div>
+    <div class="stage">
+      <svg id="pavers" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A finished pool deck appearing as pavers are laid in a herringbone pattern">
+        <defs><mask id="laid-mask"><rect width="1440" height="720" fill="#000"/><g id="bricks"></g></mask></defs>
+        <image href="https://images.unsplash.com/photo-1758192838598-a1de4da5dcaf?auto=format&fit=crop&w=2400&q=75" width="1440" height="720" preserveAspectRatio="xMidYMid slice" mask="url(#laid-mask)"/>
+      </svg>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>What we build most.</h2>
+        <p>Every project starts with a scaled drawing, so you see the pattern, borders, and drainage before a single stone is ordered.</p>
+      </div>
+      <div class="projects">
+        <div class="proj"><img src="https://images.unsplash.com/photo-1758192838598-a1de4da5dcaf?auto=format&fit=crop&w=900&q=75" alt="Pool deck at sunset" loading="lazy"><h3>Pool decks</h3><p>Travertine and coquina decks with bullnose coping and slip-resistant finishes.</p></div>
+        <div class="proj"><img src="https://images.unsplash.com/photo-1763462980602-07eb86874ac4?auto=format&fit=crop&w=900&q=75" alt="Paver pathway through grass" loading="lazy"><h3>Walkways and patios</h3><p>Garden paths, outdoor dining areas, and fire pit circles that connect the yard.</p></div>
+        <div class="proj"><img src="https://images.unsplash.com/photo-1725586660046-0c2bea151543?auto=format&fit=crop&w=900&q=75" alt="Installer laying pavers by hand" loading="lazy"><h3>Driveways</h3><p>Concrete pavers on a deep, compacted base, rated for daily car and truck traffic.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>How a project comes together.</h2>
+        <p>A typical pool deck takes one to two weeks once materials arrive.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><b>1</b><h3>Design consult</h3><p>We measure, talk through how you use the space, and bring material samples to your home.</p></div>
+        <div class="step"><b>2</b><h3>Base and grading</h3><p>Excavation, compacted base rock, and a slope that sends water away from the house.</p></div>
+        <div class="step"><b>3</b><h3>Laying</h3><p>Every paver set by hand to the pattern, with borders cut clean on site.</p></div>
+        <div class="step"><b>4</b><h3>Sand and seal</h3><p>Polymeric joint sand to lock the stones and a sealer to protect the color.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="consult" class="consult">
+    <div class="wrap consult-grid">
+      <div>
+        <h2>Let's design your space.</h2>
+        <p class="lead">A free in-home consult with samples, a measured drawing, and a fixed quote within a week.</p>
+      </div>
+      <form id="consult-form" novalidate>
+        <label>Your name<input id="q-name" name="name" autocomplete="name" required></label>
+        <label>Phone<input id="q-phone" name="phone" type="tel" autocomplete="tel" required></label>
+        <label>Project
+          <select id="q-type" name="type"><option>Pool deck</option><option>Driveway</option><option>Patio or walkway</option><option>Not sure yet</option></select>
+        </label>
+        <button class="btn btn-grape" type="submit">Request my consult</button>
+        <p class="form-note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Coquina Pavers &amp; Stone is a fictional company. Concept website designed by Vivaflow.</span>
+    <a href="/services/website-design/" target="_top">Want a site like this?</a>
+  </div>
+</footer>
+
+<a class="concept" href="/services/website-design/" target="_top"><i></i>Concept by Vivaflow</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Herringbone: a staircase of horizontal (2x1) and vertical (1x2) bricks,
+  // repeated every 4 units across. Each brick is a white rect in the mask,
+  // so the photo shows through the stones and the joints stay dark.
+  var U = 40, GAP = 3, W = 1440, H = 720, NS = 'http://www.w3.org/2000/svg';
+  var g = document.getElementById('bricks'), bricks = [];
+  function brick(x, y, w, h){
+    var px = x*U, py = y*U;
+    if (px > W || py > H || px + w*U < 0 || py + h*U < 0) return;
+    var r = document.createElementNS(NS, 'rect');
+    r.setAttribute('x', px + GAP/2); r.setAttribute('y', py + GAP/2);
+    r.setAttribute('width', w*U - GAP); r.setAttribute('height', h*U - GAP);
+    r.setAttribute('fill', '#fff');
+    g.appendChild(r);
+    bricks.push({ el: r, order: px + py*1.6 });
+  }
+  var cols = Math.ceil(W/U), rows = Math.ceil(H/U);
+  for (var j = -Math.ceil(rows/4) - 2; j <= Math.ceil(cols/4) + 2; j++){
+    for (var k = -4; k <= rows + 4; k++){
+      brick(k + 4*j, k, 2, 1);
+      brick(k + 4*j, k + 1, 1, 2);
+    }
+  }
+  bricks.sort(function(a, b){ return a.order - b.order; });
+  var els = bricks.map(function(b){ return b.el; });
+
+  if (reduced || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.hero h1, .hero aside', { y: 36, opacity: 0, duration: 1.1, stagger: .15, ease: 'power3.out' });
+  gsap.fromTo('.hero-img', { scale: 1.12 }, { scale: 1, duration: 2.6, ease: 'power2.out' });
+
+  // The signature: stones drop into place in a diagonal sweep as you scroll.
+  gsap.set(els, { opacity: 0, scale: .55, transformOrigin: '50% 50%' });
+  gsap.to(els, {
+    opacity: 1, scale: 1, ease: 'power2.out',
+    stagger: { each: 1/els.length * 1.6 },
+    scrollTrigger: { trigger: '.stage', start: 'top 85%', end: 'bottom 75%', scrub: .8 }
+  });
+
+  gsap.from('.mat', { opacity: 0, y: 20, duration: .6, stagger: .1, ease: 'power2.out', scrollTrigger: { trigger: '.mat-list', start: 'top 80%' } });
+})();
+
+document.getElementById('consult-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('form-note').textContent = 'This is a concept site by Vivaflow, so no consult was requested.';
+});
+</script>
+</body>
+</html>

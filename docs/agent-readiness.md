@@ -7,8 +7,8 @@
   remains unspecified. Google-Extended is allowed for Gemini grounding, which also
   permits the Google uses covered by that control, including training.
 - `/sitemap.xml` lists the three canonical real-business pages.
-- HTML/Markdown negotiation on those pages, plus direct `/index.md`,
-  `/contact/index.md`, and `/services/website-design/index.md` URLs.
+- HTML/Markdown negotiation on those pages, plus direct `/markdown/home.md`,
+  `/markdown/contact.md`, and `/markdown/website-design.md` URLs.
 - Link response headers, an RFC 9727 Linkset API catalog, OpenAPI description and
   two working static JSON GET endpoints (`/data/services.json`, `/data/audit.json`).
 - `/auth.md` truthfully explains public access and the absence of registration.

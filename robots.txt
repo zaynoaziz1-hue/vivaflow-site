@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /portfolio/
+
+Sitemap: https://vivaflow.org/sitemap.xml

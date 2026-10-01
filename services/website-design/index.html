@@ -10,6 +10,8 @@
   <meta property="og:site_name" content="Vivaflow">
   <meta property="og:title" content="A website that books jobs | Vivaflow">
   <meta property="og:description" content="Phone-first websites for home service businesses, connected to the follow-up that turns visitors into booked calls.">
+  <link rel="canonical" href="https://vivaflow.org/services/website-design/">
+  <meta property="og:url" content="https://vivaflow.org/services/website-design/">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,6 +70,30 @@
     .live-bar strong{font-family:var(--display);font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     dialog.live iframe{display:block;width:100%;height:calc(100dvh - 60px);border:0;background:#fff}
 
+    /* getting found */
+    .found{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,88px);align-items:center}
+    @media (max-width:960px){.found{grid-template-columns:1fr}}
+    .found-copy{min-width:0}
+    .found-list{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid var(--line)}
+    .found-list li{position:relative;padding:20px 0 20px 26px;border-bottom:1px solid var(--line)}
+    .found-list li::before{content:"";position:absolute;left:0;top:28px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+    .found-list h3{font-family:var(--body);font-size:17px;font-weight:700;letter-spacing:0}
+    .found-list p{color:var(--muted);font-size:15px;margin-top:6px;max-width:56ch}
+    .found-note{margin-top:24px;font-size:14.5px;color:var(--muted-2);max-width:60ch}
+    .ai-demo{margin:0}
+    @media (min-width:961px){.found{align-items:start}.ai-demo{position:sticky;top:120px;margin-top:120px}}
+    .ai-card{background:var(--bg-card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .ai-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);padding-bottom:16px;border-bottom:1px solid var(--line)}
+    .ai-head svg{width:16px;height:16px;color:var(--accent-bright)}
+    .bubble{margin:18px 0 0;font-size:15px;line-height:1.55;border-radius:16px;padding:14px 16px}
+    .bubble.you{margin-left:auto;max-width:82%;width:fit-content;background:var(--bg-raised);border:1px solid var(--line)}
+    .bubble.ai{background:transparent;padding-left:0;padding-right:0}
+    .bubble.ai p{min-height:6.2em}
+    .bubble.ai p.typing::after{content:"";display:inline-block;width:8px;height:1em;margin-left:2px;vertical-align:-2px;background:var(--accent-bright);animation:blink .8s steps(1) infinite}
+    @keyframes blink{50%{opacity:0}}
+    .source{display:inline-block;margin-top:12px;font-size:12.5px;color:var(--accent-bright);border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);border-radius:999px;padding:5px 11px}
+    .ai-demo figcaption{margin-top:12px;font-size:13px;color:var(--muted-2);text-align:center}
+
     /* process */
     .proc{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:48px}
     @media (max-width:900px){.proc{grid-template-columns:1fr 1fr}}
@@ -102,7 +128,7 @@
     <div class="wrap">
       <p class="crumb"><a href="/">Home</a> / Web Design</p>
       <h1>A website that books jobs, <em>not just one that looks nice.</em></h1>
-      <p class="lede">Most contractor websites are an online business card. Someone finds you on Google, can't tell if you serve their area, can't find the phone number on their phone, and leaves. I build sites that turn that visitor into a call, and then make sure every call and form gets answered.</p>
+      <p class="lede">Most contractor websites are an online business card nobody finds. Someone searches Google or asks an AI assistant for help, your business isn't in the answer, and if they do land on your site, they can't find your number on their phone. I build sites that get found, turn that visitor into a call, and make sure every call and form gets answered.</p>
       <div class="cta-row">
         <a href="/contact/" class="btn btn-primary">Book a free call</a>
         <a href="#work" class="btn btn-ghost">See the concept sites</a>
@@ -120,6 +146,38 @@
         <div class="check"><h3>Show why you, not the next guy</h3><p>Your real work, your process, and the areas you cover, written in plain words a homeowner understands.</p></div>
         <div class="check"><h3>Never let a lead go cold</h3><p>This is the part most web designers skip. Forms and missed calls connect to instant text-back and follow-up, so nobody waits until tomorrow for an answer.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section id="found" style="padding-top:0">
+    <div class="wrap found">
+      <div class="found-copy">
+        <p class="eyebrow">Getting found</p>
+        <h2 class="h2">Found on Google, and in the answers people get from AI.</h2>
+        <p class="lede" style="margin-top:18px">More homeowners now skip the search results and just ask: "Who's a good roofer in Kendall?" Google's AI answers, ChatGPT, and Gemini all pull from the same place: websites that clearly say what you do, where you do it, and why people trust you. Most contractor sites say none of that in a way a machine can read.</p>
+        <ul class="found-list">
+          <li><h3>A page for every service, in every area you cover</h3><p>"Roof repair in Kendall" and "metal roofs in Coral Gables" are different searches. Each one gets a real page, not one line on a services list.</p></li>
+          <li><h3>Code that explains your business to machines</h3><p>Behind-the-scenes markup tells Google and AI assistants your services, service area, hours, and reviews in a format they read directly.</p></li>
+          <li><h3>Your Google profile, matched to your site</h3><p>The same name, phone, hours, and services everywhere online, so search engines trust what they find.</p></li>
+          <li><h3>Answers to the questions customers actually ask</h3><p>Plain, specific answers about cost, timing, and process, which is exactly the kind of text AI assistants quote.</p></li>
+        </ul>
+        <p class="found-note">Nobody can promise an AI will name your business, and anyone who guarantees it is guessing. What I can do is remove everything that's stopping it.</p>
+      </div>
+
+      <figure class="ai-demo" aria-label="Illustration of an AI assistant recommending a local roofer">
+        <div class="ai-card">
+          <div class="ai-head">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor"/></svg>
+            AI assistant
+          </div>
+          <p class="bubble you">Who's a good metal roofer in Kendall, FL?</p>
+          <div class="bubble ai">
+            <p id="ai-answer">For metal roofs in Kendall, Galeline Roofing is a strong option. They install standing-seam systems rated for Miami-Dade's hurricane zone, offer free roof inspections, and run a 24/7 storm line during hurricane season.</p>
+            <span class="source">Source: Galeline Roofing website</span>
+          </div>
+        </div>
+        <figcaption>Illustration using Galeline Roofing, one of my concept businesses.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -242,6 +300,29 @@
   function close(){ dlg.close(); }
   document.getElementById('live-close').addEventListener('click', close);
   dlg.addEventListener('close', function(){ frame.src = 'about:blank'; document.body.style.overflow = ''; if (lastCard) lastCard.focus(); });
+})();
+</script>
+<script>
+// AI answer types itself out once, when the card scrolls into view.
+// The full answer is in the HTML, so it reads fine without JavaScript.
+(function(){
+  var el = document.getElementById('ai-answer');
+  if (!el || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var full = el.textContent;
+  el.textContent = '';
+  var io = new IntersectionObserver(function(entries){
+    if (!entries[0].isIntersecting) return;
+    io.disconnect();
+    el.classList.add('typing');
+    var i = 0;
+    (function step(){
+      i += Math.max(1, Math.round(Math.random()*3));
+      el.textContent = full.slice(0, i);
+      if (i < full.length) setTimeout(step, 22);
+      else el.classList.remove('typing');
+    })();
+  }, { threshold: .6 });
+  io.observe(el);
 })();
 </script>
 </body>

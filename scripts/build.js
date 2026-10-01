@@ -20,7 +20,7 @@ const entries = [{key:'home', file:'index.html', url:'/'}, {key:'contact',file:'
 const td = new Turndown({headingStyle:'atx'});
 for (const entry of entries) {
   const $ = cheerio.load(fs.readFileSync(path.join(root, entry.file), 'utf8'));
-  $('head').append(`<link rel="canonical" href="${origin}${entry.url}"><link rel="alternate" type="text/markdown" href="${origin}${entry.url}index.md"><link rel="api-catalog" href="/.well-known/api-catalog">`);
+  $('head').append(`<link rel="canonical" href="${origin}${entry.url}"><link rel="alternate" type="text/markdown" href="${origin}/markdown/${entry.key}.md"><link rel="api-catalog" href="/.well-known/api-catalog">`);
   $('body').append('<script src="/assets/js/agent-tools.js" defer></script>');
   const html = $.html();
   const main = $('main').clone();
@@ -32,7 +32,9 @@ for (const entry of entries) {
   // function's generated data only, so every page reaches negotiation.
   const staleHtml = path.join(out, entry.file);
   if (fs.existsSync(staleHtml)) fs.unlinkSync(staleHtml);
-  write(entry.url.slice(1) + 'index.md', markdown);
+  const staleMarkdown = path.join(out, entry.url.slice(1), 'index.md');
+  if (fs.existsSync(staleMarkdown)) fs.unlinkSync(staleMarkdown);
+  write('markdown/' + entry.key + '.md', markdown);
 }
 // Fictional concepts must not be indexed as real home-service businesses.
 for (const name of fs.readdirSync(path.join(out, 'portfolio'))) {
@@ -54,6 +56,6 @@ write('.well-known/mcp/server-card.json', {serverInfo:{name:'vivaflow',version:'
 const skill = '---\nname: vivaflow-services\ndescription: Explain Vivaflow services and help a home service business find the free audit booking page.\n---\n\n# Vivaflow services and audit\n\nRead https://vivaflow.org/data/services.json for current services, audience and pricing approach. Read https://vivaflow.org/data/audit.json for the free audit and booking link. Both are public GET endpoints; no credentials are needed.\n\nThe read-only MCP endpoint https://vivaflow.org/mcp offers get_services and get_audit_booking_link. Neither tool creates a booking.\n\nOffer the Calendly link when the user wants an audit. The user must select a slot and complete booking there. Do not claim an appointment is confirmed merely because you returned a link. Implementation pricing requires a business review. Portfolio businesses are fictional concepts, not customer testimonials.\n';
 write('.well-known/agent-skills/vivaflow-services/SKILL.md', skill);
 write('.well-known/agent-skills/index.json', {$schema:'https://schemas.agentskills.io/discovery/0.2.0/schema.json',skills:[{name:'vivaflow-services',type:'skill-md',description:'Read Vivaflow services and find the free audit booking link.',url:'/.well-known/agent-skills/vivaflow-services/SKILL.md',digest:'sha256:'+crypto.createHash('sha256').update(skill).digest('hex')}]});
-write('llms.txt', `# Vivaflow\n\n> Websites and automation for home service businesses. Miami-based, working nationwide.\n\n## Information\n${entries.map(e=>`- [${e.key}](${origin}${e.url}index.md)`).join('\n')}\n- [Public API](${origin}/openapi.json)\n- [Access instructions](${origin}/auth.md)\n\nPortfolio sites are fictional concepts, not customer case studies.\n`);
+write('llms.txt', `# Vivaflow\n\n> Websites and automation for home service businesses. Miami-based, working nationwide.\n\n## Information\n${entries.map(e=>`- [${e.key}](${origin}/markdown/${e.key}.md)`).join('\n')}\n- [Public API](${origin}/openapi.json)\n- [Access instructions](${origin}/auth.md)\n\nPortfolio sites are fictional concepts, not customer case studies.\n`);
 write('assets/js/agent-tools.js', `(() => {\n const context = document.modelContext || navigator.modelContext;\n if (!context || typeof context.registerTool !== 'function') return;\n const tools = ${JSON.stringify(tools)};\n for (const tool of tools) {\n  Promise.resolve(context.registerTool({name:tool.name,description:tool.description,inputSchema:{type:'object',properties:{},additionalProperties:false},execute:async () => ({content:[{type:'text',text:JSON.stringify(tool.value)}]})})).catch(() => {});\n }\n})();\n`);
 console.log('Built public site, Markdown, discovery documents and agent tools.');

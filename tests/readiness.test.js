@@ -61,7 +61,7 @@ test('MCP rejects disallowed browser origins and unsupported HTTP methods', asyn
   assert.equal(malformed.status,400);
 });
 test('discovery documents point to real artifacts; skills digest matches', () => {
-  for (const file of ['index.html', 'contact/index.html', 'services/website-design/index.html']) {
+  for (const file of ['index.html', 'contact/index.html', 'services/website-design/index.html', 'index.md', 'contact/index.md', 'services/website-design/index.md']) {
     assert.equal(fs.existsSync('public/' + file), false, 'Static HTML must not shadow the Vercel page rewrite');
   }
   const index = JSON.parse(fs.readFileSync('public/.well-known/agent-skills/index.json'));
@@ -75,7 +75,7 @@ test('discovery documents point to real artifacts; skills digest matches', () =>
   assert.equal((xml.match(/<loc>/g)||[]).length,3);
   assert.ok(!xml.includes('/portfolio/'));
   for (const name of fs.readdirSync('public/portfolio')) assert.match(fs.readFileSync(`public/portfolio/${name}/index.html`,'utf8'),/noindex, follow/);
-  assert.match(fs.readFileSync('public/contact/index.md','utf8'),/https:\/\/calendly.com\/zaynoaziz1\/30min/);
+  assert.match(fs.readFileSync('public/markdown/contact.md','utf8'),/https:\/\/calendly.com\/zaynoaziz1\/30min/);
 });
 test('WebMCP tools register and return actual public information; unsupported browsers are unaffected', async () => {
   const script = fs.readFileSync('public/assets/js/agent-tools.js','utf8');

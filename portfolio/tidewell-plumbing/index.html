@@ -119,6 +119,8 @@
     .concept{position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:#0e0c0a;color:#f5efe4;
       font:600 12px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.2)}
     .concept i{width:7px;height:7px;border-radius:50%;background:#cd7f42}
+    .concept{transition:opacity .3s ease,transform .3s ease}
+    .concept.tuck{opacity:0;transform:translateY(14px);pointer-events:none}
     @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
   </style>
 </head>
@@ -322,6 +324,9 @@ document.getElementById('book-form').addEventListener('submit', function(e){
   e.preventDefault();
   document.getElementById('form-note').textContent = 'This is a concept site by Vivaflow, so no visit was booked.';
 });
+</script>
+<script>
+(function(){var b=document.querySelector('.concept');if(!b)return;function t(){b.classList.toggle('tuck',scrollY<innerHeight*.7)}t();addEventListener('scroll',t,{passive:true})})();
 </script>
 </body>
 </html>

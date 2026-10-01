@@ -1,0 +1,29 @@
+{
+  "name": "vivaflow-site",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "npm run build && node --test tests/*.test.js",
+    "build": "node scripts/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaynoaziz1-hue/vivaflow-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/zaynoaziz1-hue/vivaflow-site/issues"
+  },
+  "homepage": "https://github.com/zaynoaziz1-hue/vivaflow-site#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "cheerio": "^1.2.0",
+    "turndown": "^7.2.4",
+    "zod": "^4.6.5"
+  },
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  }
+}

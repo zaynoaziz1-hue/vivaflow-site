@@ -1,6 +1,24 @@
 # Agent readiness: implementation and release checklist
 
-## Implemented, pending deployment and a Cloudflare rescan
+## Verified production status — October 1, 2026
+
+The changes are deployed at https://vivaflow.org. Cloudflare's account dashboard
+reports **Agent Ready**, with Quick Wins **5/5**, Technical Groundwork **2/3**,
+and Advanced Integration **3/8**. Its separate public scanner reports level 4/5,
+**Agent-Integrated**, using the `apiApp` profile. These are different scoring
+surfaces; neither result means Fully agent-optimized.
+
+Production verification confirmed HTML and Markdown responses for all three
+business pages, working MCP initialization and booking-link calls, and browser
+discovery of both WebMCP tools. All five local test groups passed. The dashboard
+initially missed WebMCP; a refreshed result recognizes it.
+
+The owner explicitly chose to keep a public website with Calendly booking and
+**no customer accounts**. OAuth and agent registration are therefore outside the
+current scope. DNSSEC was disabled when inspected; DNS discovery was not added.
+No Cloudflare security settings were changed.
+
+## Implemented
 
 - Valid `/robots.txt` with explicit search crawler groups and a sitemap reference.
 - Content Signals allowing search and AI answer use; general training preference
@@ -16,7 +34,8 @@
   scanner may still fail the Auth.md check.
 - A working `/mcp` service and `/.well-known/mcp/server-card.json`.
 - Agent skill document and SHA-256 discovery index.
-- Browser WebMCP tools with feature detection; scanner support must be verified.
+- Browser WebMCP tools with feature detection; verified by both Cloudflare's
+  scanner and the live browser.
 
 The highest Cloudflare tier is NOT verified or claimed by this implementation.
 Passing a technical check is not a guarantee of AI recommendations or citations.
@@ -58,8 +77,7 @@ Passing a technical check is not a guarantee of AI recommendations or citations.
 | Web Bot Auth | An actual outbound bot, secure private-key storage, signed requests and published public keys. This site currently makes no outbound agent requests. |
 | DNS-AID | Cloudflare DNS access, published service records for the deployed endpoint, and DNSSEC coordination with the registrar. Confirm current DNS-AID schema before configuring records. |
 
-For a useful next phase, decide whether Vivaflow should offer authenticated audit
-requests or a client portal. Direct scheduling needs an approved Calendly integration
+Customer accounts are intentionally excluded by the owner. Direct scheduling needs an approved Calendly integration
 and appropriate credentials; the existing public URL only supports booking handoff.
 Never publish placeholder OAuth endpoints, fake keys or metadata claiming booking
 capabilities merely to turn a check green.

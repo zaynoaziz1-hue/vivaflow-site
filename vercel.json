@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "framework": null,
+  "rewrites": [
+    {"source":"/","destination":"/api/page?page=home"},
+    {"source":"/index.html","destination":"/api/page?page=home"},
+    {"source":"/contact","destination":"/api/page?page=contact"},
+    {"source":"/contact/","destination":"/api/page?page=contact"},
+    {"source":"/contact/index.html","destination":"/api/page?page=contact"},
+    {"source":"/services/website-design","destination":"/api/page?page=website-design"},
+    {"source":"/services/website-design/","destination":"/api/page?page=website-design"},
+    {"source":"/services/website-design/index.html","destination":"/api/page?page=website-design"},
+    {"source":"/mcp","destination":"/api/mcp"}
+  ],
+  "headers": [
+    {"source":"/(.*)","headers":[{"key":"Content-Signal","value":"search=yes, ai-input=yes"},{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Link","value":"</.well-known/api-catalog>; rel=\"api-catalog\", </sitemap.xml>; rel=\"sitemap\", </openapi.json>; rel=\"service-desc\""}]},
+    {"source":"/(.*).md","headers":[{"key":"Content-Type","value":"text/markdown; charset=utf-8"}]},
+    {"source":"/.well-known/api-catalog","headers":[{"key":"Content-Type","value":"application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""}]},
+    {"source":"/portfolio/(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex, follow"}]}
+  ]
+}

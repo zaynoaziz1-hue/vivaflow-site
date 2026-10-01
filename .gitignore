@@ -1,0 +1,6 @@
+node_modules/
+public/
+lib/pages.json
+.vercel/
+.env*
+.DS_Store

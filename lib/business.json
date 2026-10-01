@@ -1,0 +1,25 @@
+{
+  "name": "Vivaflow",
+  "url": "https://vivaflow.org",
+  "audience": "Home service businesses, including roofers, plumbers, HVAC and paving companies",
+  "location": "Miami, Florida",
+  "serviceArea": "United States; remote delivery",
+  "services": [
+    {"id":"website-design","name":"Website design","description":"Custom websites for home service businesses, connected to lead follow-up.","url":"https://vivaflow.org/services/website-design/"},
+    {"id":"lead-follow-up","name":"Missed-call response and lead follow-up","description":"Systems for responding to missed calls and following up with new leads.","url":"https://vivaflow.org/#services"},
+    {"id":"workflow-automation","name":"Workflow automation","description":"Automate repetitive work such as quotes, reminders and spreadsheet updates.","url":"https://vivaflow.org/#services"},
+    {"id":"reporting","name":"Lead-source reporting","description":"See where jobs come from and which lead sources produce revenue.","url":"https://vivaflow.org/#services"}
+  ],
+  "pricing": "Implementation is quoted after reviewing the business; no fixed package price is published.",
+  "audit": {
+    "name":"Free leak audit",
+    "durationMinutes":30,
+    "price":0,
+    "currency":"USD",
+    "obligation":"No obligation to buy implementation services.",
+    "page":"https://vivaflow.org/contact/",
+    "bookingUrl":"https://calendly.com/zaynoaziz1/30min",
+    "bookingInstructions":"The customer chooses a time and completes booking on Calendly. Returning this link does not reserve an appointment."
+  },
+  "portfolioNotice":"Portfolio sites are original concepts for fictional businesses, not customer case studies or verified customer results."
+}

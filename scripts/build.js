@@ -28,7 +28,10 @@ for (const entry of entries) {
   main.find('a[href]').each((_, node) => {const a = $(node); a.attr('href', new URL(a.attr('href'), origin + entry.url).href);});
   const markdown = `# ${$('title').text()}\n\nSource: ${origin}${entry.url}\n\n${td.turndown(main.html())}\n`;
   pages[entry.key] = {html, markdown};
-  write(entry.file, html);
+  // Vercel serves existing files before applying rewrites. Keep HTML in the
+  // function's generated data only, so every page reaches negotiation.
+  const staleHtml = path.join(out, entry.file);
+  if (fs.existsSync(staleHtml)) fs.unlinkSync(staleHtml);
   write(entry.url.slice(1) + 'index.md', markdown);
 }
 // Fictional concepts must not be indexed as real home-service businesses.
